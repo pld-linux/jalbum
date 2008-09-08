@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=jAlbum
+Comment=Jalbum web album software
+Icon=jalbum
+Exec=jalbum
+Terminal=false
+Type=Application
+Categories=Graphics;
+# vi: encoding=utf-8

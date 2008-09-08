@@ -1,20 +1,26 @@
 # TODO
 # - system java deps from lib/ dir
-# - desktop file
 Summary:	Jalbum web album software
 Name:		jalbum
 Version:	8.0.9
-Release:	0.2
+Release:	0.6
 License:	freeware
 Group:		Applications/Publishing
 Source0:	http://jalbum.net/download/8.0/Linux/NoVM/Jalbuminstall.bin
 # Source0-md5:	0e10280a6202fd9ae86336e0a0020e1b
+Source1:	%{name}.desktop
+Source2:	%{name}.png
 URL:		http://jalbum.net/
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	jre
 # ifarch and x86 tray library
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%ifnarch %{ix86}
+# only on x86 something to strip
+%define		_enable_debug_packages	0
+%endif
 
 %define		_appdir		%{_libdir}/%{name}
 
@@ -45,11 +51,8 @@ rm -f dist/JAlbum/lib/windows_zg_ia_sf.jar
 rm -f dist/JAlbum/lib/sunos_zg_ia_sf.jar
 
 for jar in $(find -name '*_zg_ia_sf.jar'); do
-	path=${jar%/*}
-	subdir=${jar##*/}
-	subdir=${subdir%*_zg_ia_sf.jar}
-
-	unzip -qq -a $jar -d $path/$subdir
+	dir=${jar%*_zg_ia_sf.jar}
+	unzip -qq -a $jar -d $dir
 	rm -f $jar
 done
 
@@ -68,12 +71,18 @@ cat <<'EOF' > $RPM_BUILD_ROOT%{_bindir}/%{name}
 exec %{_bindir}/java -Xmx512M -jar %{_appdir}/JAlbum.jar
 EOF
 
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+cp -a %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/%{name}
+%{_pixmapsdir}/%{name}.png
+%{_desktopdir}/%{name}.desktop
 %dir %{_appdir}
 %{_appdir}/JAlbum.jar
 %{_appdir}/ext

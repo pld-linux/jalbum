@@ -1,5 +1,6 @@
 # TODO
 # - system java deps from lib/ dir
+# - verify the %lang tags
 Summary:	Jalbum web album software
 Name:		jalbum
 Version:	8.0.9
@@ -11,7 +12,7 @@ Source0:	http://jalbum.net/download/8.0/Linux/NoVM/Jalbuminstall.bin
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 URL:		http://jalbum.net/
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	unzip
 Requires:	jre
 # ifarch and x86 tray library
 #BuildArch:	noarch
@@ -49,14 +50,14 @@ if [ ${INSTALLER_REMAINDER:-0} -gt 0 ]; then
 fi
 dd if=%{SOURCE0} of="$RESOURCE_ZIP" bs=$BLOCKSIZE skip=$(expr $ARCHSTART + $INSTALLER_BLOCKS) count=$RESSIZE
 
-unzip -qq Resource1.zip
+%{__unzip} -qq Resource1.zip
 mv C_/Dev/Java/JAlbum/* .
 rm -f dist/JAlbum/lib/windows_zg_ia_sf.jar
 rm -f dist/JAlbum/lib/sunos_zg_ia_sf.jar
 
 for jar in $(find -name '*_zg_ia_sf.jar'); do
 	dir=${jar%*_zg_ia_sf.jar}
-	unzip -qq -a $jar -d $dir
+	%{__unzip} -qq -a $jar -d $dir
 	rm -f $jar
 done
 

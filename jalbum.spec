@@ -3,8 +3,8 @@
 Summary:	Jalbum web album software
 Name:		jalbum
 Version:	8.0.9
-Release:	0.6
-License:	freeware
+Release:	1
+License:	Freely Distributable
 Group:		Applications/Publishing
 Source0:	http://jalbum.net/download/8.0/Linux/NoVM/Jalbuminstall.bin
 # Source0-md5:	0e10280a6202fd9ae86336e0a0020e1b
@@ -25,8 +25,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_appdir		%{_libdir}/%{name}
 
 %description
-With Jalbum it's easy to create your own photo album site. Just the
-way you want it.
+JAlbum makes Web albums of your digital images. No extra software is
+needed to view your galleries other than a Web browser. Unlike "server
+side" album scripts, a JAlbum gallery can be served from a plain Web
+server without scripting support. JAlbum's built in Web server allows
+you to share your albums straight from JAlbum. You can also share your
+albums on a CD.
 
 %prep
 %setup -qcT

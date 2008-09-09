@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Name=jAlbum
 GenericName=Image Gallery Generator
+GenericName[pl]=Generator galerii obrazów
 Comment=jAlbum web album software
 Comment[pl]=jAlbum - program to tworzenia albumów WWW
 Icon=jalbum

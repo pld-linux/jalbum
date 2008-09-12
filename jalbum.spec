@@ -4,13 +4,15 @@
 Summary:	Jalbum web album software
 Name:		jalbum
 Version:	8.0.9
-Release:	1
+Release:	2
 License:	Freely Distributable
 Group:		Applications/Publishing
 Source0:	http://jalbum.net/download/8.0/Linux/NoVM/Jalbuminstall.bin
 # Source0-md5:	0e10280a6202fd9ae86336e0a0020e1b
 Source1:	%{name}.desktop
 Source2:	%{name}.png
+Source3:	x-%{name}.desktop
+Source4:	%{name}.sh
 URL:		http://jalbum.net/
 BuildRequires:	unzip
 Requires:	jre
@@ -71,14 +73,12 @@ rm -rf dist/JAlbum/lib/linux/x86
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_appdir}}
 cp -a dist/JAlbum/* $RPM_BUILD_ROOT%{_appdir}
-cat <<'EOF' > $RPM_BUILD_ROOT%{_bindir}/%{name}
-#!/bin/sh
-exec %{_bindir}/java -Xmx512M -jar %{_appdir}/JAlbum.jar
-EOF
+install %{SOURCE4} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/mimelnk/application}
 cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 cp -a %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+cp -a %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,6 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/%{name}
 %{_pixmapsdir}/%{name}.png
 %{_desktopdir}/%{name}.desktop
+%{_datadir}/mimelnk/application/x-%{name}.desktop
 %dir %{_appdir}
 %{_appdir}/JAlbum.jar
 %{_appdir}/ext

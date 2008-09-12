@@ -1,0 +1,6 @@
+[Desktop Entry]
+Comment=jAlbum Project
+Icon=jalbum
+Type=MimeType
+MimeType=application/x-jalbum
+Patterns=*.jap;

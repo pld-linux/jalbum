@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/bin/java -Xmx512M -jar /usr/lib/jalbum/JAlbum.jar ${1:+"$@"}
+exec /usr/bin/java -Xmx512M -jar @APPDIR@/JAlbum.jar ${1:+"$@"}

@@ -1,7 +1,7 @@
 # TODO
 # - system java deps from lib/ dir
-# - verify the %lang tags
 Summary:	Jalbum web album software
+Summary(pl.UTF-8):	Jalbum - oprogramowanie do albumów WWW
 Name:		jalbum
 Version:	8.0.9
 Release:	3
@@ -14,6 +14,7 @@ Source2:	%{name}.png
 Source3:	x-%{name}.desktop
 Source4:	%{name}.sh
 URL:		http://jalbum.net/
+BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 Requires:	jre
 # ifarch and x86 tray library
@@ -34,6 +35,15 @@ side" album scripts, a JAlbum gallery can be served from a plain Web
 server without scripting support. JAlbum's built in Web server allows
 you to share your albums straight from JAlbum. You can also share your
 albums on a CD.
+
+%description -l pl.UTF-8
+JAlbum tworzy albumy WWW ze zdjęć cyfrowych. Do oglądania zdjęć nie
+jest potrzebny żaden dodatkowy program poza przeglądarką WWW. W
+przeciwieństwie do skryptów działających po stronie serwera galerie
+utworzone przez JAlbum mogą być udostępniane przez zwykły serwer WWW
+bez obsługi skryptów. Wbudowany w JAlbum serwer WWW umożliwia
+udostępnianie zdjęć bezpośrednio z programu. Można także udostępniać
+albumy na płytach CD.
 
 %prep
 %setup -qcT
@@ -119,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ja) %{_appdir}/texts/texts_ja.properties
 %lang(ko) %{_appdir}/texts/texts_ko.properties
 %lang(nl) %{_appdir}/texts/texts_nl.properties
-%lang(no) %{_appdir}/texts/texts_no.properties
+%lang(nb) %{_appdir}/texts/texts_no.properties
 %lang(pl) %{_appdir}/texts/texts_pl.properties
 %lang(pt) %{_appdir}/texts/texts_pt.properties
 %lang(ro) %{_appdir}/texts/texts_ro.properties
@@ -169,14 +179,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(is) %{_appdir}/skins/Chameleon/texts/texts_is.properties
 %lang(it) %{_appdir}/skins/Chameleon/texts/texts_it.properties
 %lang(nl) %{_appdir}/skins/Chameleon/texts/texts_nl.properties
-%lang(no) %{_appdir}/skins/Chameleon/texts/texts_no.properties
+%lang(nb) %{_appdir}/skins/Chameleon/texts/texts_no.properties
 %lang(pl) %{_appdir}/skins/Chameleon/texts/texts_pl.properties
 %lang(pt) %{_appdir}/skins/Chameleon/texts/texts_pt.properties
 %lang(ru) %{_appdir}/skins/Chameleon/texts/texts_ru.properties
 %lang(sk) %{_appdir}/skins/Chameleon/texts/texts_sk.properties
 %lang(sl) %{_appdir}/skins/Chameleon/texts/texts_sl.properties
 %lang(sr) %{_appdir}/skins/Chameleon/texts/texts_sr.properties
-%lang(sr@Latn) %{_appdir}/skins/Chameleon/texts/texts_sr_latin.properties
+%lang(sr@latin) %{_appdir}/skins/Chameleon/texts/texts_sr_latin.properties
 %lang(sv) %{_appdir}/skins/Chameleon/texts/texts_sv.properties
 %lang(uk) %{_appdir}/skins/Chameleon/texts/texts_uk.properties
 %lang(zh) %{_appdir}/skins/Chameleon/texts/texts_zh.properties

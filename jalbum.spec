@@ -4,7 +4,7 @@
 Summary:	Jalbum web album software
 Name:		jalbum
 Version:	8.0.9
-Release:	2
+Release:	3
 License:	Freely Distributable
 Group:		Applications/Publishing
 Source0:	http://jalbum.net/download/8.0/Linux/NoVM/Jalbuminstall.bin
@@ -74,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_appdir}}
 cp -a dist/JAlbum/* $RPM_BUILD_ROOT%{_appdir}
 install %{SOURCE4} $RPM_BUILD_ROOT%{_bindir}/%{name}
+%{__sed} -i -e 's,@APPDIR@,%{_appdir},g' $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/mimelnk/application}
 cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}

@@ -17,6 +17,8 @@ URL:		http://jalbum.net/
 BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 Requires:	jre
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 # ifarch and x86 tray library
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

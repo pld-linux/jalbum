@@ -3,12 +3,12 @@
 Summary:	Jalbum web album software
 Summary(pl.UTF-8):	Jalbum - oprogramowanie do albumów WWW
 Name:		jalbum
-Version:	8.0.9
-Release:	4
+Version:	8.1.2
+Release:	1
 License:	Freely Distributable
 Group:		Applications/Publishing
-Source0:	http://jalbum.net/download/8.0/Linux/NoVM/Jalbuminstall.bin
-# Source0-md5:	0e10280a6202fd9ae86336e0a0020e1b
+Source0:	http://jalbum.net/download/8.1/Linux/NoVM/Jalbuminstall.bin
+# Source0-md5:	fbbe42c79f220737990030616afea542
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	x-%{name}.desktop
@@ -17,8 +17,10 @@ URL:		http://jalbum.net/
 BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 Requires:	jre
+%if "%{pld_release}" != "ac"
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
+%endif
 # ifarch and x86 tray library
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,6 +76,7 @@ for jar in $(find -name '*_zg_ia_sf.jar'); do
 	%{__unzip} -qq -a $jar -d $dir
 	rm -f $jar
 done
+mv dist/Jalbum/skins dist/JAlbum
 
 %ifarch %{ix86}
 chmod +x dist/JAlbum/lib/linux/x86/libtray.so
@@ -154,46 +157,44 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdir}/skins/*/*.bsh
 %{_appdir}/skins/*/*.jpg
 %{_appdir}/skins/*/*.jap
-%{_appdir}/skins/*/res
-%{_appdir}/skins/*/styles
-%{_appdir}/skins/*/plugins
-%{_appdir}/skins/*/png
-%{_appdir}/skins/*/includes
-%{_appdir}/skins/*/help
-%{_appdir}/skins/*/config
 %{_appdir}/skins/*/guestbook
+%{_appdir}/skins/*/help
+%{_appdir}/skins/*/includes
+%{_appdir}/skins/*/plugins
+%{_appdir}/skins/*/res
+%{_appdir}/skins/*/scripts
+%{_appdir}/skins/*/styles
+%{_appdir}/skins/*/skin.properties
 %dir %{_appdir}/skins/*/texts
-%{_appdir}/skins/Chameleon/texts/texts.properties
-%{_appdir}/skins/Chameleon/texts/texts_en.properties
-%{_appdir}/skins/Minimal/texts/texts.properties
-%{_appdir}/skins/Nature/texts/texts.properties
-%{_appdir}/skins/Standard/texts/texts.properties
-%{_appdir}/skins/Standard/texts/texts_en.properties
-%{_appdir}/skins/Wedding/texts/texts.properties
-%lang(bs) %{_appdir}/skins/Chameleon/texts/texts_bs.properties
-%lang(cs) %{_appdir}/skins/Chameleon/texts/texts_cs.properties
-%lang(da) %{_appdir}/skins/Chameleon/texts/texts_da.properties
-%lang(de) %{_appdir}/skins/Chameleon/texts/texts_de.properties
-%lang(es) %{_appdir}/skins/Chameleon/texts/texts_es.properties
-%lang(fi) %{_appdir}/skins/Chameleon/texts/texts_fi.properties
-%lang(fr) %{_appdir}/skins/Chameleon/texts/texts_fr.properties
-%lang(hu) %{_appdir}/skins/Chameleon/texts/texts_hu.properties
-%lang(is) %{_appdir}/skins/Chameleon/texts/texts_is.properties
-%lang(it) %{_appdir}/skins/Chameleon/texts/texts_it.properties
-%lang(nl) %{_appdir}/skins/Chameleon/texts/texts_nl.properties
-%lang(nb) %{_appdir}/skins/Chameleon/texts/texts_no.properties
-%lang(pl) %{_appdir}/skins/Chameleon/texts/texts_pl.properties
-%lang(pt) %{_appdir}/skins/Chameleon/texts/texts_pt.properties
-%lang(ru) %{_appdir}/skins/Chameleon/texts/texts_ru.properties
-%lang(sk) %{_appdir}/skins/Chameleon/texts/texts_sk.properties
-%lang(sl) %{_appdir}/skins/Chameleon/texts/texts_sl.properties
-%lang(sr) %{_appdir}/skins/Chameleon/texts/texts_sr.properties
-%lang(sr@latin) %{_appdir}/skins/Chameleon/texts/texts_sr_latin.properties
-%lang(sv) %{_appdir}/skins/Chameleon/texts/texts_sv.properties
-%lang(uk) %{_appdir}/skins/Chameleon/texts/texts_uk.properties
-%lang(zh) %{_appdir}/skins/Chameleon/texts/texts_zh.properties
-%lang(sv) %{_appdir}/skins/Nature/texts/texts_sv.properties
-%lang(cs) %{_appdir}/skins/Standard/texts/texts_cs.properties
-%lang(sv) %{_appdir}/skins/Standard/texts/texts_sv.properties
-%lang(sk) %{_appdir}/skins/Wedding/texts/texts_sk.properties
-%lang(sv) %{_appdir}/skins/Wedding/texts/texts_sv.properties
+%{_appdir}/skins/*/texts/texts_en.properties
+%{_appdir}/skins/*/texts/texts.properties
+%{_appdir}/skins/TiltViewer/NOTES.media_server
+%{_appdir}/skins/TiltViewer/texts/texts.base.properties
+%lang(bs) %{_appdir}/skins/*/texts/texts_bs.properties
+%lang(cs) %{_appdir}/skins/*/texts/texts_cs.properties
+%lang(da) %{_appdir}/skins/*/texts/texts_da.properties
+%lang(de) %{_appdir}/skins/*/texts/texts_de.properties
+%lang(es) %{_appdir}/skins/*/texts/texts_es.properties
+%lang(fi) %{_appdir}/skins/*/texts/texts_fi.properties
+%lang(fr) %{_appdir}/skins/*/texts/texts_fr.properties
+%lang(he) %{_appdir}/skins/*/texts/texts_he.properties
+%lang(hu) %{_appdir}/skins/*/texts/texts_hu.properties
+%lang(is) %{_appdir}/skins/*/texts/texts_is.properties
+%lang(it) %{_appdir}/skins/*/texts/texts_it.properties
+%lang(lt) %{_appdir}/skins/*/texts/texts_lt.properties
+%lang(nb) %{_appdir}/skins/*/texts/texts_no.properties
+%lang(nl) %{_appdir}/skins/*/texts/texts_nl.properties
+%lang(pl) %{_appdir}/skins/*/texts/texts_pl.properties
+%lang(pt) %{_appdir}/skins/*/texts/texts_pt.properties
+%lang(ru) %{_appdir}/skins/*/texts/texts_ru.properties
+%lang(sk) %{_appdir}/skins/*/texts/texts_sk.properties
+%lang(sl) %{_appdir}/skins/*/texts/texts_sl.properties
+%lang(sr) %{_appdir}/skins/*/texts/texts_sr.properties
+%if "%{pld_release}" != "ac"
+%lang(sr@latin) %{_appdir}/skins/*/texts/texts_sr_latin.properties
+%else
+%lang(sr@Latn) %{_appdir}/skins/*/texts/texts_sr_latin.properties
+%endif
+%lang(sv) %{_appdir}/skins/*/texts/texts_sv.properties
+%lang(uk) %{_appdir}/skins/*/texts/texts_uk.properties
+%lang(zh) %{_appdir}/skins/*/texts/texts_zh.properties

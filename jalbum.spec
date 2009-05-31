@@ -4,11 +4,11 @@ Summary:	Jalbum web album software
 Summary(pl.UTF-8):	Jalbum - oprogramowanie do albumów WWW
 Name:		jalbum
 Version:	8.2.8
-Release:	1
+Release:	2
 License:	Freely Distributable
 Group:		Applications/Publishing
-Source0:	http://jalbum.net/download/8.2/Linux/NoVM/Jalbuminstall.bin
-# Source0-md5:	d58bb736a84f64908c2cf184da294c20
+Source0:	http://jalbum.net/download/%{version}/Linux/NoVM/Jalbuminstall.bin
+# Source0-md5:	96e40cb736edb652de00dfadc349b201
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	x-%{name}.desktop
@@ -87,7 +87,7 @@ rm -rf dist/JAlbum/lib/linux/x86
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_appdir}}
-cp -a dist/JAlbum/* $RPM_BUILD_ROOT%{_appdir}
+cp -a dist/{Jalbum,JAlbum}/* $RPM_BUILD_ROOT%{_appdir}
 install %{SOURCE4} $RPM_BUILD_ROOT%{_bindir}/%{name}
 %{__sed} -i -e 's,@APPDIR@,%{_appdir},g' $RPM_BUILD_ROOT%{_bindir}/%{name}
 
@@ -107,9 +107,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk/application/x-%{name}.desktop
 %dir %{_appdir}
 %{_appdir}/JAlbum.jar
+%{_appdir}/ext
 %{_appdir}/includes
 %{_appdir}/license
 %{_appdir}/plugins
+%{_appdir}/res
+%{_appdir}/system
 %{_appdir}/tools
 
 %dir %{_appdir}/lib
@@ -161,6 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdir}/skins/*/*.bsh
 %{_appdir}/skins/*/*.jpg
 %{_appdir}/skins/*/*.jap
+%{_appdir}/skins/*/examples
 %{_appdir}/skins/*/guestbook
 %{_appdir}/skins/*/help
 %{_appdir}/skins/*/includes
@@ -185,6 +189,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(hu) %{_appdir}/skins/*/texts/texts_hu.properties
 %lang(is) %{_appdir}/skins/*/texts/texts_is.properties
 %lang(it) %{_appdir}/skins/*/texts/texts_it.properties
+%lang(ko) %{_appdir}/skins/*/texts/texts_ko.properties
 %lang(lt) %{_appdir}/skins/*/texts/texts_lt.properties
 %lang(nb) %{_appdir}/skins/*/texts/texts_no.properties
 %lang(nl) %{_appdir}/skins/*/texts/texts_nl.properties

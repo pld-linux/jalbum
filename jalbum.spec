@@ -4,7 +4,7 @@ Summary:	Jalbum web album software
 Summary(pl.UTF-8):	Jalbum - oprogramowanie do albumów WWW
 Name:		jalbum
 Version:	8.2.8
-Release:	2
+Release:	3
 License:	Freely Distributable
 Group:		Applications/Publishing
 Source0:	http://jalbum.net/download/%{version}/Linux/NoVM/Jalbuminstall.bin
@@ -120,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_appdir}/lib/linux
 %{_appdir}/lib/linux/jdic_stub.jar
 %ifarch %{ix86}
+%dir %{_appdir}/lib/linux/x86
 %attr(755,root,root) %{_appdir}/lib/linux/x86/libtray.so
 %endif
 

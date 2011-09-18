@@ -4,7 +4,7 @@ Summary:	Jalbum web album software
 Summary(pl.UTF-8):	Jalbum - oprogramowanie do albumów WWW
 Name:		jalbum
 Version:	8.2.8
-Release:	3
+Release:	4
 License:	Freely Distributable
 Group:		Applications/Publishing
 Source0:	http://jalbum.net/download/%{version}/Linux/NoVM/Jalbuminstall.bin
@@ -17,6 +17,7 @@ URL:		http://jalbum.net/
 BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 Requires:	jre
+Requires:	desktop-file-utils
 %if "%{pld_release}" != "ac"
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -92,12 +93,15 @@ install %{SOURCE4} $RPM_BUILD_ROOT%{_bindir}/%{name}
 %{__sed} -i -e 's,@APPDIR@,%{_appdir},g' $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/mimelnk/application}
-cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-cp -a %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-cp -a %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%update_desktop_database
 
 %files
 %defattr(644,root,root,755)
